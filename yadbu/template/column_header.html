@@ -1,0 +1,20 @@
+<table class="table table-bordered table-hover table-responsive">
+    <thead>
+      <tr>
+        <th scope="col">#</th> 
+        {% for header in table_head %}
+        <th scope="col">{{header}}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+        {% for row in table_data %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        {% for data in row %}
+        <td>{{ data }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>

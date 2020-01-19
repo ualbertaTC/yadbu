@@ -11,7 +11,8 @@ column_dict = {
 }
 
 def index_view(request):
-    return render(request, 'index/index.html', {})
+
+    return render(request, 'index/index.html', {"table_head" : ["age", "weight"], "table_data" : [["12","69"], ["18", "72"]]})
 
 def columns(request):
     column_header = request.GET.get('column_header','')
