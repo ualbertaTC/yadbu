@@ -5,5 +5,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index_view, name= 'index_view'),
+    path('columns/', views.columns, name= 'columns')
 ]
 
