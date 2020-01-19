@@ -18,7 +18,7 @@ def columns(request):
     value = request.GET.get('value', '')
     list_of_columns = request.GET.get('list_of_columns','')
     column_header = "age"
-    value =  "10"
+    value =  "12"
     list_of_columns = "first_name, last_name"
     list_of_columns = [i.strip() for i in list_of_columns.split(",")] #list of columns is comma separated string
     table_set = set(column_dict[i] for i in list_of_columns) #make list of only unique table names
@@ -27,5 +27,4 @@ def columns(request):
         table_values_list.append([j for j in list_of_columns if column_dict[j] == i]) 
         #for each unique table name, appending with column from corresponding table name, list of lists
     table_names = column_dict[column_header].objects.filter(**{column_header:value})
-    print(table_names)
     return HttpResponse("columns works")
