@@ -9,12 +9,21 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
+  var search_term = "";
   $( function() {
     $( "#search" ).autocomplete({
       source: "/auto/",
       minLength: 1,
     });
+    $( "#search_2" ).autocomplete({
+      source: function(request, response) {
+            $.get("/auto/?key=" + $("#search").val() + "&term=" + $("#search_2").val(), 
+                function (data) { response(data); return data; })
+      },
+      minLength: 1,
+    });
   });
+ 
   </script>
 </head>
 <body>
