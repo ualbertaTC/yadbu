@@ -44,6 +44,6 @@ def columns(request):
     output_data = [[k for j in i for k in j] for i in zip(*result_list)]
     output_columns = [j for i in table_values_list for j in i]
     column_indexs = [output_columns.index(i) for i in list_of_columns]
-    print([[i[j] for j in column_indexs] for i in output_data])
+    output_data = [[i[j] for j in column_indexs] for i in output_data]
 
     return list_of_columns, output_data
