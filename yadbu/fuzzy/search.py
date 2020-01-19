@@ -22,6 +22,8 @@ for i in words:
     words_dict[i] = words
     word_counts[i] = word_count
 
+def print_dict(key):
+    print(words_dict[key])
 
 def search(key, incomplete_word):
     if key not in words_dict:

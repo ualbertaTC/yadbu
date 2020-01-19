@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
-from .search import search, sort
+from .search import search, sort, print_dict
 import json
 
 def search_autocomplete(request):
