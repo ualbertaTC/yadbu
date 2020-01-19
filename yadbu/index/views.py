@@ -26,9 +26,6 @@ def columns(request):
     for i in table_set:
         table_values_list.append([j for j in list_of_columns if column_dict[j] == i]) 
         #for each unique table name, appending with column from corresponding table name, list of lists
-    tmp_dict = {}
-    tmp_dict.update(locals())
-    tmp_dict.update(globals())
-    exec("table_names = column_dict[column_header].objects.filter(%s=value)" % column_header, tmp_dict)
-    print(tmp_dict["table_names"])
+    table_names = column_dict[column_header].objects.filter(**{column_header:value})
+    print(table_names)
     return HttpResponse("columns works")
