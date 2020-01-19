@@ -6,7 +6,8 @@ class Identity(models.Model):
     last_name = models.CharField(max_length=32)
 
 class Attributes(models.Model):
-    patient_identity = models.ForeignKey(Identity, on_delete=models.CASCADE)
+    #patient_identity = models.ForeignKey(Identity, on_delete=models.CASCADE)
+    patient_number = models.IntegerField()
     age = models.IntegerField()
     weight = models.IntegerField()
 
