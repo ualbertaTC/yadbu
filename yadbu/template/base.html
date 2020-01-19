@@ -10,10 +10,21 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
 function submit_button(){
-  var key = $( "input[name='key']" );
+  var key = $( "input[name='key']");
+  var key_list = [];
+  var x; 
+  for (x of key){
+    key_list.push(x.value);
+  }
+  key_list = key_list.join();
   var term = $( "input[name='term']");
+  var term_list = [];
+  for (x of term){
+      term_list.push(x.value);
+  }
+  term_list = term_list.join();
   var columns = $('#columninput');
-  window.location.href = "?column_header=" + key.val() + "&value=" + term.val() +"&list_of_columns=" + columns.val();
+  window.location.href = "?column_header=" + key_list + "&value=" + term_list +"&list_of_columns=" + columns.val();
 
 }
 function selectElementContents(el) {

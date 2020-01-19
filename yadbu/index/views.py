@@ -23,18 +23,23 @@ def columns(request):
     if (column_header == "" or value == "" or list_of_columns == ""):
         return [], [[]]
 
-    #column_header = "age"
-    #value =  "40"
-    #list_of_columns = "age, first_name, weight, last_name" #as if entered by user
-
     list_of_columns = [i.strip() for i in list_of_columns.split(",")] #list of columns is comma separated string so strip and split by comma
     table_set = set(column_dict[i] for i in list_of_columns) #set() makes a list of only unique table names using generator
     table_values_list = []
     for i in table_set:
         table_values_list.append([j for j in list_of_columns if column_dict[j] == i]) 
         #for each unique table name, append with column from corresponding table name. Would start new list for next table name
-    table_names = column_dict[column_header].objects.filter(**{column_header:value}) #key word argument unpacking - interprets column_header as "age"
-    queryS = table_names.values_list('patient_number') #find patient number of those who match the query above
+    patient_number_sets = []
+    for i,v in zip(column_header.split(","), value.split(",")):
+        table_names = column_dict[i].objects.filter(**{i:v}) #key word argument unpacking - interprets column_header as "age"
+        queryS = table_names.values_list('patient_number') #find patient number of those who match the query above
+        patient_number_sets.append(set(queryS))
+    
+    queryS = patient_number_sets[0]
+    if (len(patient_number_sets) > 1):
+        queryS = queryS.intersection(*patient_number_sets[1:])
+    queryS = [j for i in queryS for j in i]
+    
     result_list = []
     for i in table_values_list:
         result_list.append(list(column_dict[i[0]].objects.filter(patient_number__in=queryS).values_list(*i))) 
