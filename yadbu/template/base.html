@@ -18,7 +18,7 @@
     $( "#search_2" ).autocomplete({
       source: function(request, response) {
             $.get("/auto/?key=" + $("#search").val() + "&term=" + $("#search_2").val(), 
-                function (data) { return data; })
+                function (data) { response(data); return data; })
       },
       minLength: 1,
     });
