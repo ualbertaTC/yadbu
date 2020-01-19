@@ -1,4 +1,4 @@
-<table class="table table-bordered table-hover table-responsive">
+<table id="main_table" class="table table-bordered table-hover table-responsive">
     <thead>
       <tr>
         {% for header in table_head %}
@@ -16,3 +16,4 @@
       {% endfor %}
     </tbody>
   </table>
+  <button onclick="selectElementContents(document.getElementById('main_table'));"> Copy Table </button>
