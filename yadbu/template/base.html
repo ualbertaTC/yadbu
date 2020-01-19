@@ -9,8 +9,27 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
-  var search_term = "";
-  $( function() {
+function selectElementContents(el) {
+    var body = document.body, range, sel;
+    if (document.createRange && window.getSelection) {
+        range = document.createRange();
+        sel = window.getSelection();
+        sel.removeAllRanges();
+        try {
+            range.selectNodeContents(el);
+            sel.addRange(range);
+        } catch (e) {
+            range.selectNode(el);
+            sel.addRange(range);
+        }
+    } else if (body.createTextRange) {
+        range = body.createTextRange();
+        range.moveToElementText(el);
+        range.select();
+    }
+    document.execCommand("Copy");
+}    
+ $( function() {
     $( "input[name='key']" ).autocomplete({
       source: "/auto/",
       minLength: 1,
@@ -23,7 +42,6 @@
       minLength: 1,
     });
   });
- 
   </script>
 </head>
 <body>
