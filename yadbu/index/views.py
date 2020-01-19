@@ -23,9 +23,9 @@ def columns(request):
     if (column_header == "" or value == "" or list_of_columns == ""):
         return [], [[]]
 
-    column_header = "age"
-    value =  "40"
-    list_of_columns = "age, first_name, weight, last_name" #as if entered by user
+    #column_header = "age"
+    #value =  "40"
+    #list_of_columns = "age, first_name, weight, last_name" #as if entered by user
 
     list_of_columns = [i.strip() for i in list_of_columns.split(",")] #list of columns is comma separated string so strip and split by comma
     table_set = set(column_dict[i] for i in list_of_columns) #set() makes a list of only unique table names using generator

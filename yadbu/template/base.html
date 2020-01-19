@@ -9,6 +9,13 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
+function submit_button(){
+  var key = $( "input[name='key']" );
+  var term = $( "input[name='term']");
+  var columns = $('#columninput');
+  window.location.href = "?column_header=" + key.val() + "&value=" + term.val() +"&list_of_columns=" + columns.val();
+
+}
 function selectElementContents(el) {
     var body = document.body, range, sel;
     if (document.createRange && window.getSelection) {
